@@ -230,16 +230,6 @@ nnoremap <C-l> <C-w>l
 " Set 'Y' to yank to end of line
 map Y y$
 
-" Map vim-test
-nmap <silent> <leader>t :TestNearest<CR>
-nmap <silent> <leader>T :TestFile<CR>
-nmap <silent> <leader>a :TestSuite<CR>
-nmap <silent> <leader>l :TestLast<CR>
-nmap <silent> <leader>g :TestVisit<CR>
-
-" Map <CTRL-s> to :lclose so we can close syntastic's errors list
-"nnoremap <c-s> :lclose<cr>
-
 " Syntastic Config
 set statusline+=%#warningmsg#
 set statusline+=%{SyntasticStatuslineFlag()}
@@ -265,12 +255,7 @@ set colorcolumn=100,110
 " Show text as error if over 110 characters
 match ErrorMsg '\%>110v.\+'
 
-" Make Yardoc directives look like instance variables
-hi link yardGenericTag rubyInstanceVariable
-
 " CrtlP Settings
-" let g:ctrlp_match_window_bottom   = 0
-" let g:ctrlp_match_window_reversed = 0
 " List tags with ,.
 nnoremap <leader>. :CtrlPTag<cr>
 
@@ -294,24 +279,12 @@ if executable('ag')
   let g:ctrlp_use_caching = 0
 endif
 
-" Vimfiler
-let g:vimfiler_as_default_explorer = 1
-
 " Ruby / Rails Settings
 " Intent private methods
 let g:ruby_indent_access_modifier_style = 'indent'
 
 " vim-spacebars
 let g:mustache_abbreviations = 1
-
-" Nerdtree
-" " open a NERDTree automatically when vim starts up if no files were specified
-" autocmd StdinReadPre * let s:std_in=1
-" autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
-" " Toggle Nerdtree
-" map <C-t> :NERDTreeToggle<CR>
-" " close vim if the only window left open is a NERDTree
-" autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
 
 " Map the :Explore command
 map <C-t> :Explore<CR>
@@ -335,7 +308,4 @@ endif
 " Set spellcheck to enabled on markdown and git commit files
 autocmd BufRead,BufNewFile *.md setlocal spell
 autocmd FileType gitcommit setlocal spell
-
-" Set indent guides to start on the 2nd level
-let g:indent_guides_start_level = 2
 
