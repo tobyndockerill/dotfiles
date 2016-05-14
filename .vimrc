@@ -12,8 +12,6 @@ syntax sync fromstart
 " Make sure we're using 256 colours
 set t_Co=256
 
-set encoding=utf-8 nobomb
-
 " set the runtime path to include Vundle and initialize
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
@@ -102,31 +100,18 @@ Plugin 'vim-airline/vim-airline-themes'
 " Bunch of colorschemes
 Plugin 'flazz/vim-colorschemes'
 
-" Disabled
-" Plugin 'scrooloose/nerdtree'
-" Neovim-compatible autocomplete
-" Relative line numbers
-" Plugin 'jeffkreeftmeijer/vim-numbertoggle'
-
-
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
 filetype plugin indent on    " required
 
-" Hybrid colorscheme config
-" let g:hybrid_custom_term_colors = 1
-" let g:hybrid_reduced_contrast = 1 " Remove this line if using the default palette.
-
 set background=dark
-" colorscheme ir_black
-" colorscheme railscasts2
-" colorscheme 256-greyvim
 
 " Airline config
 let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#whitespace#enabled = 1
-let g:airline_powerline_fonts = 1
-let g:airline_theme='powerlineish'
+let g:airline_powerline_fonts = 0
+let g:airline_left_sep=''
+let g:airline_right_sep=''
 
 " Invisible characters
 " set listchars=tab:▸\ ,trail:·,eol:¬,nbsp:_,extends:❯,precedes:❮
