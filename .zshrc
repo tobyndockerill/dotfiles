@@ -54,12 +54,12 @@ tmuxinator vi-mode zsh-syntax-highlighting)
 
 # User configuration
 
-path=('/Users/tobyn/.rbenv/shims')
+path=('$HOME/.rbenv/shims')
 path+=('/opt/vagrant/bin')
-path+=('/Users/tobyn/.rbenv/bin')
+path+=('$HOME/.rbenv/bin')
 path+=('/usr/local/var/rbenv/shims')
 path+=('/usr/local/bin/git')
-path+=('/Users/tobyn/dotfiles/bin')
+path+=('$HOME/dotfiles/bin')
 path+=('/Applications/MAMP/Library/bin')
 path+=('/Applications/MAMP/bin/php/php5.6.10/bin')
 path+=('/usr/local/bin')
@@ -69,9 +69,9 @@ path+=('/bin')
 path+=('/usr/sbin')
 path+=('/sbin')
 path+=('/opt/X11/bin')
-path+=('/Users/tobyn/Library/Android/sdx/tools')
-path+=('/Users/tobyn/Library/Android/sdx/platform-tools')
-path+=('/Users/tobyn/dev/cli-tools')
+path+=('$HOME/Library/Android/sdx/tools')
+path+=('$HOME/Library/Android/sdx/platform-tools')
+path+=('$HOME/dev/cli-tools')
 export PATH
 # export MANPATH="/usr/local/man:$MANPATH"
 
