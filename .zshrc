@@ -1,5 +1,5 @@
 # Path to your oh-my-zsh installation.
-export ZSH=/Users/tobyn/.oh-my-zsh
+export ZSH=$HOME/.oh-my-zsh
 
 # Set name of the theme to load.
 # Look in ~/.oh-my-zsh/themes/
@@ -50,7 +50,7 @@ COMPLETION_WAITING_DOTS="true"
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(gitfast brew bundler common-aliases gem heroku osx rails history-substring-search
-tmuxinator vi-mode)
+tmuxinator vi-mode zsh-syntax-highlighting)
 
 # User configuration
 
@@ -120,9 +120,5 @@ export HOMEBREW_CASK_OPTS="--appdir=/Applications"
 # Set elasticsearch memory variables
 export ES_MIN_MEM=2g
 export ES_MAX_MEM=2g
-
-# Enable syntax highlighting
-# See: https://github.com/zsh-users/zsh-syntax-highlighting/blob/master/INSTALL.md
-source /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
 export TERM="xterm-256color"
