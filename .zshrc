@@ -49,8 +49,11 @@ COMPLETION_WAITING_DOTS="true"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(gitfast brew bundler common-aliases gem heroku osx rails history-substring-search
-tmuxinator vi-mode zsh-syntax-highlighting)
+plugins=(gitfast bundler common-aliases gem rails history-substring-search tmuxinator vi-mode)
+if [ $OSTYPE=="darwin*" ]; then
+  plugins+=(brew heroku osx)
+fi
+plugins+=(zsh-syntax-highlighting)
 
 # User configuration
 
@@ -60,8 +63,12 @@ path+=('$HOME/.rbenv/bin')
 path+=('/usr/local/var/rbenv/shims')
 path+=('/usr/local/bin/git')
 path+=('$HOME/dotfiles/bin')
-path+=('/Applications/MAMP/Library/bin')
-path+=('/Applications/MAMP/bin/php/php5.6.10/bin')
+if [ $OSTYPE=="darwin*" ]; then
+  path+=('/Applications/MAMP/Library/bin')
+  path+=('/Applications/MAMP/bin/php/php5.6.10/bin')
+  path+=('$HOME/Library/Android/sdx/tools')
+  path+=('$HOME/Library/Android/sdx/platform-tools')
+fi
 path+=('/usr/local/bin')
 path+=('/usr/local/sbin')
 path+=('/usr/bin')
@@ -69,9 +76,9 @@ path+=('/bin')
 path+=('/usr/sbin')
 path+=('/sbin')
 path+=('/opt/X11/bin')
-path+=('$HOME/Library/Android/sdx/tools')
-path+=('$HOME/Library/Android/sdx/platform-tools')
 path+=('$HOME/dev/cli-tools')
+
+
 export PATH
 # export MANPATH="/usr/local/man:$MANPATH"
 
@@ -82,12 +89,7 @@ source $ZSH/oh-my-zsh.sh
 # You may need to manually set your language environment
 # export LANG=en_US.UTF-8
 
-# Preferred editor for local and remote sessions
-if [[ -n $SSH_CONNECTION ]]; then
-  export EDITOR='vim'
-else
-  export EDITOR='nvim'
-fi
+export EDITOR='nvim'
 
 # Compilation flags
 # export ARCHFLAGS="-arch x86_64"
@@ -105,18 +107,20 @@ fi
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 alias v="nvim"
 alias v.="nvim ."
-alias generate-ctags="ctags -R --languages=ruby --exclude=.git --exclude=log . $(bundle list --paths)"
+alias generate-rails-ctags="ctags -R --languages=ruby --exclude=.git --exclude=log . $(bundle list --paths)"
 
 # Allow RBENV to control ruby version
 eval "$(rbenv init -)"
 
-test -e ${HOME}/.iterm2_shell_integration.zsh && source ${HOME}/.iterm2_shell_integration.zsh
+if [ $OSTYPE=="darwin*" ]; then
+  test -e ${HOME}/.iterm2_shell_integration.zsh && source ${HOME}/.iterm2_shell_integration.zsh
 
-# Brew's ZSH completions
-fpath=(/usr/local/share/zsh-completions $fpath)
+  # Homebrew's ZSH completions
+  fpath=(/usr/local/share/zsh-completions $fpath)
 
-# Symlink Homebrew Cask to /Applications by default
-export HOMEBREW_CASK_OPTS="--appdir=/Applications"
+  # Symlink Homebrew Cask to /Applications by default
+  export HOMEBREW_CASK_OPTS="--appdir=/Applications"
+fi
 
 # Set elasticsearch memory variables
 export ES_MIN_MEM=2g
