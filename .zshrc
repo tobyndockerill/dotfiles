@@ -84,7 +84,7 @@ export PATH
 
 source $ZSH/oh-my-zsh.sh
 
-[ -f .zshrc-private ] && source .zshrc-private
+[ -f $HOME/dotfiles/.zshrc-private ] && source $HOME/dotfiles/.zshrc-private
 
 # You may need to manually set your language environment
 # export LANG=en_US.UTF-8
