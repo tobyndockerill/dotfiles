@@ -4,6 +4,7 @@ autocmd!
 " disregard compatability
 set nocompatible
 set number
+set relativenumber
 
 filetype off
 syntax enable
@@ -74,6 +75,12 @@ Plugin 'kshenoy/vim-signature'
 
 " Set Vim's wildignore based on .gitignore
 Plugin 'vim-scripts/gitignore'
+
+" Generate ctags with :TagsGenerate
+Plugin 'szw/vim-tags'
+
+" Maximize Vim splits with :MaximizerToggle or <F3> by default
+Plugin 'szw/vim-maximizer'
 
 " Run vim tests easily
 Plugin 'thoughtbot/vim-rspec'
@@ -212,6 +219,13 @@ nnoremap <C-j> <C-w>j
 nnoremap <C-k> <C-w>k
 nnoremap <C-l> <C-w>l
 
+" buffer with <C-Tab>
+nnoremap <C-Tab> :bnext<CR>
+nnoremap <C-S-Tab> :bprevious<CR>
+
+"quick close buffer
+nnoremap <C-Esc> :bd<CR>
+
 " Set 'Y' to yank to end of line
 map Y y$
 
@@ -294,3 +308,7 @@ endif
 autocmd BufRead,BufNewFile *.md setlocal spell
 autocmd FileType gitcommit setlocal spell
 
+" Generate ctags on save
+let g:vim_tags_auto_generate = 1
+" Use Dispatch.vim to generate the ctags
+let g:vim_tags_use_vim_dispatch = 1
