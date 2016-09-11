@@ -1,8 +1,7 @@
-let mapleader = ","
+let mapleader = " "
 
 autocmd!
 " disregard compatability
-set nocompatible
 set number
 set relativenumber
 
@@ -10,118 +9,121 @@ filetype off
 syntax enable
 syntax sync fromstart
 
-" Make sure we're using 256 colours
-set t_Co=256
+function! DoRemote(arg)
+  UpdateRemotePlugins
+endfunction
 
-" set the runtime path to include Vundle and initialize
-set rtp+=~/.vim/bundle/Vundle.vim
-call vundle#begin()
-
-" let Vundle manage Vundle, required
-Plugin 'VundleVim/Vundle.vim'
+" Initialize Plugged
+call plug#begin('~/.config/nvim/plugged')
 
 " Git
-Plugin 'tpope/vim-fugitive'
-Plugin 'airblade/vim-gitgutter'
+Plug 'tpope/vim-fugitive'
+Plug 'airblade/vim-gitgutter'
 
 "Vim Surround
-Plugin 'tpope/vim-surround'
+Plug 'tpope/vim-surround'
 
 " Vim vinegar (improvements to vim's file tree)
-Plugin 'tpope/vim-vinegar'
+Plug 'tpope/vim-vinegar'
+
+" Super Retab
+Plug 'rhlobo/vim-super-retab'
 
 " Fuzzy Search
-Plugin 'kien/ctrlp.vim'
-" Plugin 'wincent/command-t'
+" Plug 'kien/ctrlp.vim'
+Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+Plug 'junegunn/fzf.vim'
 
 " Syntastic
-Plugin 'scrooloose/syntastic'
+" Plug 'scrooloose/syntastic'
+" Neomake
+Plug 'neomake/neomake'
 
 " Commenting plugin (use gcc for a line or gc{motion})
-Plugin 'tpope/vim-commentary'
+Plug 'tpope/vim-commentary'
 
 " Add 'ends' to things (eg do ... end)
-Plugin 'tpope/vim-endwise'
+Plug 'tpope/vim-endwise'
 
-" Autocomplete (not currently compatible with neovim)
-Plugin 'Valloric/YouCompleteMe'
-
-" Autocomplete (compatible with neovim)
-Plugin 'Shougo/deoplete.nvim'
+" Autocomplete
+Plug 'Shougo/deoplete.nvim', { 'do': function('DoRemote') }
 
 " Buffer explorer
-Plugin 'jlanzarotta/bufexplorer'
+Plug 'jlanzarotta/bufexplorer'
 
 " Search
-Plugin 'rking/ag.vim'
+" Plug 'rking/ag.vim'
 
 " Emmet
-Plugin 'mattn/emmet-vim'
+Plug 'mattn/emmet-vim'
 
 " Whitespace
-Plugin 'ntpeters/vim-better-whitespace'
+Plug 'ntpeters/vim-better-whitespace'
 
 " Pair matching with []
-Plugin 'tpope/vim-unimpaired'
+Plug 'tpope/vim-unimpaired'
 
 " Auto-pairing of symbols
-Plugin 'jiangmiao/auto-pairs'
+Plug 'jiangmiao/auto-pairs'
 
 " Navigate between Vim and Tmux splits
-Plugin 'christoomey/vim-tmux-navigator'
+Plug 'christoomey/vim-tmux-navigator'
 
 " Visually display marks in the sidebar
-Plugin 'kshenoy/vim-signature'
+Plug 'kshenoy/vim-signature'
 
 " Set Vim's wildignore based on .gitignore
-Plugin 'vim-scripts/gitignore'
+Plug 'vim-scripts/gitignore'
 
 " Generate ctags with :TagsGenerate
-Plugin 'szw/vim-tags'
-
-" Maximize Vim splits with :MaximizerToggle or <F3> by default
-Plugin 'szw/vim-maximizer'
+Plug 'szw/vim-tags'
 
 " Run vim tests easily
-Plugin 'thoughtbot/vim-rspec'
+" Plug 'thoughtbot/vim-rspec'
 
 " Dispatch
-Plugin 'tpope/vim-dispatch'
+Plug 'tpope/vim-dispatch'
 
-" Indent Guides
-Plugin 'nathanaelkane/vim-indent-guides'
+" BufOnly
+Plug 'schickling/vim-bufonly'
 
 " Ruby
-Plugin 'vim-ruby/vim-ruby'
+Plug 'vim-ruby/vim-ruby'
 
 " Rails
-Plugin 'tpope/vim-rails'
+Plug 'tpope/vim-rails'
 
-" Coffeescript
-Plugin 'kchmck/vim-coffee-script'
+" JavaScript
+Plug 'pangloss/vim-javascript'
+
+" React
+Plug 'mxw/vim-jsx'
+
+" Slim
+Plug 'slim-template/vim-slim'
+autocmd BufNewFile,BufRead *.slim set ft=slim
 
 " Airline theme
-Plugin 'vim-airline/vim-airline'
-Plugin 'vim-airline/vim-airline-themes'
-
-" Bunch of colorschemes
-Plugin 'flazz/vim-colorschemes'
+Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
 
 " All of your Plugins must be added before the following line
-call vundle#end()            " required
-filetype plugin indent on    " required
+call plug#end()
+filetype plugin indent on
 
-set background=dark
+set background=light
 
 " Airline config
+let g:airline_theme = "papercolor"
 let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#whitespace#enabled = 1
 let g:airline_powerline_fonts = 0
 let g:airline_left_sep=''
 let g:airline_right_sep=''
-
-" Invisible characters
-" set listchars=tab:▸\ ,trail:·,eol:¬,nbsp:_,extends:❯,precedes:❮
+let g:airline#extensions#tabline#left_sep = ' '
+let g:airline#extensions#tabline#left_alt_sep = '|'
+let g:airline#extensions#tabline#right_sep = ' '
+let g:airline#extensions#tabline#right_alt_sep = '|'
 
 " Syntax coloring lines that are too long just slows down the world
 set synmaxcol=1200
@@ -129,15 +131,12 @@ set synmaxcol=1200
 " Don't reset cursor to start of line when moving around
 set nostartofline
 
-set hlsearch                    " highlight the search
 set ls=2                        " show a status line even if there's only one window
 
 " Improve vim's scrolling speed
-set ttyfast
 set lazyredraw
 
-set wildmenu                    " show completion on the mode-line
-set linespace=0                 " number of pixels between the lines
+set linespace=1                 " number of pixels between the lines
 set splitright                  " open vertical splits on the right
 set splitbelow                  " open the horizontal split below
 set nowrap
@@ -150,17 +149,13 @@ set hidden                      " hide buffers when abandoned
 
 " Highlight the current line
 set cursorline
-"
+
 " Time out on key codes but not mappings
 " set notimeout
 " set ttimeout
 " set ttimeoutlen=100
 
-" Auto-reload buffers when files are changed on disk
-set autoread
-
-" Lines with equal indent form a fold.
-set foldmethod=indent
+set foldmethod=syntax
 set foldlevel=1
 set foldnestmax=10
 " Open all folds by default
@@ -173,28 +168,23 @@ set undoreload=10000            " number of lines to save for undo
 
 set vb                          " disable alert sound
 set showcmd                     " display incomplete commands
-set history=100                 " a ton of history
 
 " Default shell and shell syntax and source ~/.zshrc
 " set shell=/bin/zsh\ --login
 let g:is_bash=0
 let g:is_zsh=1
 
-
 " Whitespace
 set tabstop=2 shiftwidth=2      " a tab is two spaces
 set expandtab                   " use spaces, not tabs
-set backspace=indent,eol,start  " backspace through everything in insert mode
 " Strip whitespace on save (using vim-better-whitespace)
-autocmd BufWritePre * StripWhitespace
+" autocmd BufWritePre * StripWhitespace
 
 " Searching
-set incsearch                   " incremental searching
 set ignorecase                  " searches are case insensitive...
 set smartcase                   " ... unless they contain at least one capital letter
 set scrolloff=0                 " keep a 5 line padding when moving the cursor
 
-set autoindent                  " indent on enter
 set smartindent                 " do smart indenting when starting a new line
 set shiftround                  " indent to the closest shiftwidth
 
@@ -219,63 +209,36 @@ nnoremap <C-j> <C-w>j
 nnoremap <C-k> <C-w>k
 nnoremap <C-l> <C-w>l
 
-" buffer with <C-Tab>
-nnoremap <C-Tab> :bnext<CR>
-nnoremap <C-S-Tab> :bprevious<CR>
-
-"quick close buffer
-nnoremap <C-Esc> :bd<CR>
-
 " Set 'Y' to yank to end of line
 map Y y$
 
-" Syntastic Config
-set statusline+=%#warningmsg#
-set statusline+=%{SyntasticStatuslineFlag()}
-set statusline+=%*
-
-let g:syntastic_always_populate_loc_list = 1
-let g:syntastic_auto_loc_list = 1
-let g:syntastic_check_on_open = 1
-let g:syntastic_check_on_wq = 0
-let g:syntastic_loc_list_height = 4
-let g:syntastic_ruby_checkers = ['rubocop']
-let g:syntastic_ruby_rubocop_exec = '~/.rbenv/shims/rubocop'
-let g:syntastic_javascript_checkers = ['jshint']
-let g:syntastic_scss_checkers = ['scss_lint']
-" disable for HTML files
-let syntastic_mode_map = { 'passive_filetypes': ['html'] }
-
-" Exclude the doc folder from CRTLp
-set wildignore+=*/doc/*
+" Neomake Config
+let g:neomake_javascript_enabled_makers = ['eslint']
+let g:neomake_ruby_enabled_makers = ['rubocop']
+let g:neomake_scss_enabled_makers = ['scsslint']
+let g:neomake_go_enabled_makers = ['go', 'golint', 'govet']
+let g:neomake_typescript_enabled_makers = ['tsc', 'tslint']
+let g:neomake_php_enabled_makers = ['php']
+let g:neomake_css_enabled_makers = ['csslint']
+autocmd! BufWritePost * Neomake
 
 " Visible column at 100 and 110 chars
 set colorcolumn=100,110
 " Show text as error if over 110 characters
 match ErrorMsg '\%>110v.\+'
 
-" CrtlP Settings
-" List tags with ,.
-nnoremap <leader>. :CtrlPTag<cr>
-
 " RSpec.vim mappings
-map <Leader>t :call RunCurrentSpecFile()<CR>
-map <Leader>s :call RunNearestSpec()<CR>
-map <Leader>l :call RunLastSpec()<CR>
-map <Leader>a :call RunAllSpecs()<CR>
-let g:rspec_runner = "os_x_iterm2"
-let g:rspec_command = "Dispatch rspec {spec}"
+" map <Leader>t :call RunCurrentSpecFile()<CR>
+" map <Leader>s :call RunNearestSpec()<CR>
+" map <Leader>l :call RunLastSpec()<CR>
+" map <Leader>a :call RunAllSpecs()<CR>
+" let g:rspec_runner = "os_x_iterm2"
+" let g:rspec_command = "Dispatch bundle exec rspec {spec}"
 
 " The Silver Searcher
 if executable('ag')
   " Use ag over grep
   set grepprg=ag\ --nogroup\ --nocolor
-
-  " Use ag in CtrlP for listing files. Lightning fast and respects .gitignore
-  let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
-
-  " ag is fast enough that CtrlP doesn't need to cache
-  let g:ctrlp_use_caching = 0
 endif
 
 " Ruby / Rails Settings
@@ -284,9 +247,6 @@ let g:ruby_indent_access_modifier_style = 'indent'
 
 " vim-spacebars
 let g:mustache_abbreviations = 1
-
-" Map the :Explore command
-map <C-t> :Explore<CR>
 
 " Automatically source .vimrc when saved
 if has('autocmd')
@@ -300,8 +260,12 @@ if has('nvim')
 
   let g:deoplete#enable_at_startup = 1
 
-  " use the neovim strategy for vim-test
-  let test#strategy = "neovim"
+  " " use the neovim strategy for vim-test
+  " let test#strategy = "neovim"
+
+  " neovim currently has some problems with ctrl-h
+  " https://github.com/neovim/neovim/issues/2048
+  nmap <BS> <C-W>h
 endif
 
 " Set spellcheck to enabled on markdown and git commit files
@@ -312,3 +276,10 @@ autocmd FileType gitcommit setlocal spell
 let g:vim_tags_auto_generate = 1
 " Use Dispatch.vim to generate the ctags
 let g:vim_tags_use_vim_dispatch = 1
+
+" FZF options
+map <C-t> :Files<CR>
+
+" Syntax for .god files
+au BufReadPost *.god set filetype=ruby
+
