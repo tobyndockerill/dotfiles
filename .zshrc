@@ -5,7 +5,7 @@ export ZSH=$HOME/.oh-my-zsh
 # Look in ~/.oh-my-zsh/themes/
 # Optionally, if you set this to "random", it'll load a random theme each
 # time that oh-my-zsh is loaded.
-ZSH_THEME="macovsky"
+ZSH_THEME="pure"
 
 # Uncomment the following line to use case-sensitive completion.
 # CASE_SENSITIVE="true"
@@ -43,13 +43,14 @@ COMPLETION_WAITING_DOTS="true"
 # HIST_STAMPS="mm/dd/yyyy"
 
 # Would you like to use another custom folder than $ZSH/custom?
-# ZSH_CUSTOM=/path/to/new-custom-folder
+ZSH_CUSTOM=$HOME/dotfiles/zsh/custom
 
 # Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(gitfast bundler common-aliases gem rails history-substring-search tmuxinator vi-mode)
+plugins=(gitfast bundler common-aliases rails history-substring-search tmux tmuxinator vi-mode 
+  colored-man-pages)
 if [ $OSTYPE=="darwin*" ]; then
   plugins+=(brew heroku osx)
 fi
@@ -57,18 +58,11 @@ plugins+=(zsh-syntax-highlighting)
 
 # User configuration
 
-path=('$HOME/.rbenv/shims')
-path+=('/opt/vagrant/bin')
-path+=('$HOME/.rbenv/bin')
+path=($HOME'/.rbenv/shims')
+path+=($HOME'/.rbenv/bin')
 path+=('/usr/local/var/rbenv/shims')
 path+=('/usr/local/bin/git')
-path+=('$HOME/dotfiles/bin')
-if [ $OSTYPE=="darwin*" ]; then
-  path+=('/Applications/MAMP/Library/bin')
-  path+=('/Applications/MAMP/bin/php/php5.6.10/bin')
-  path+=('$HOME/Library/Android/sdx/tools')
-  path+=('$HOME/Library/Android/sdx/platform-tools')
-fi
+path+=($HOME'/dotfiles/bin')
 path+=('/usr/local/bin')
 path+=('/usr/local/sbin')
 path+=('/usr/bin')
@@ -76,8 +70,7 @@ path+=('/bin')
 path+=('/usr/sbin')
 path+=('/sbin')
 path+=('/opt/X11/bin')
-path+=('$HOME/dev/cli-tools')
-
+path+=('/usr/local/opt/go/libexec/bin')
 
 export PATH
 # export MANPATH="/usr/local/man:$MANPATH"
@@ -107,23 +100,19 @@ export EDITOR='nvim'
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 alias v="nvim"
 alias v.="nvim ."
-alias generate-rails-ctags="ctags -R --languages=ruby --exclude=.git --exclude=log . $(bundle list --paths)"
+alias agf="ag --nobreak --nonumbers --noheading . | fzf"
 
 # Allow RBENV to control ruby version
 eval "$(rbenv init -)"
 
 if [ $OSTYPE=="darwin*" ]; then
   test -e ${HOME}/.iterm2_shell_integration.zsh && source ${HOME}/.iterm2_shell_integration.zsh
-
-  # Homebrew's ZSH completions
-  fpath=(/usr/local/share/zsh-completions $fpath)
-
-  # Symlink Homebrew Cask to /Applications by default
-  export HOMEBREW_CASK_OPTS="--appdir=/Applications"
 fi
 
-# Set elasticsearch memory variables
-export ES_MIN_MEM=2g
-export ES_MAX_MEM=2g
+export FZF_DEFAULT_COMMAND='ag -g ""'
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh ]
 
-export TERM="xterm-256color"
+# Traverse back to home containing .git in directory tree
+function cdg() {
+  while [[ $PWD != '/' && ! -d ".git" ]]; do cd ..; done
+}
