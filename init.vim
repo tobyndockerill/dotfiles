@@ -4,6 +4,7 @@ autocmd!
 " disregard compatability
 set number
 set relativenumber
+set termguicolors
 
 filetype off
 syntax enable
@@ -26,10 +27,18 @@ Plug 'tpope/vim-surround'
 " Vim vinegar (improvements to vim's file tree)
 Plug 'tpope/vim-vinegar'
 
+" Vitality
+" (focus reporting)
+" Plug 'sjl/vitality.vim'
+" let $NVIM_TUI_ENABLE_CURSOR_SHAPE=1
+" let g:vitality_fix_focus = 1
+" let g:vitality_always_assume_iterm = 1
+
 " Super Retab
 Plug 'rhlobo/vim-super-retab'
 
 " Fuzzy Search
+" Plug 'Shougo/denite.nvim'
 " Plug 'kien/ctrlp.vim'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
@@ -46,10 +55,15 @@ Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-endwise'
 
 " Autocomplete
-Plug 'Shougo/deoplete.nvim', { 'do': function('DoRemote') }
+" Plug 'Shougo/deoplete.nvim', { 'do': function('DoRemote') }
+" Plug 'fishbullet/deoplete-ruby'
 
 " Buffer explorer
 Plug 'jlanzarotta/bufexplorer'
+
+" Tagbar
+Plug 'majutsushi/tagbar'
+nmap <F8> :TagbarToggle<CR>
 
 " Search
 " Plug 'rking/ag.vim'
@@ -79,7 +93,7 @@ Plug 'vim-scripts/gitignore'
 Plug 'szw/vim-tags'
 
 " Run vim tests easily
-" Plug 'thoughtbot/vim-rspec'
+Plug 'thoughtbot/vim-rspec'
 
 " Dispatch
 Plug 'tpope/vim-dispatch'
@@ -111,10 +125,11 @@ Plug 'vim-airline/vim-airline-themes'
 call plug#end()
 filetype plugin indent on
 
-set background=light
+set background=dark
 
 " Airline config
-let g:airline_theme = "papercolor"
+let g:airline_theme = "wombat"
+" let g:airline_theme = "distinguished"
 let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#whitespace#enabled = 1
 let g:airline_powerline_fonts = 0
@@ -220,7 +235,9 @@ let g:neomake_go_enabled_makers = ['go', 'golint', 'govet']
 let g:neomake_typescript_enabled_makers = ['tsc', 'tslint']
 let g:neomake_php_enabled_makers = ['php']
 let g:neomake_css_enabled_makers = ['csslint']
+let g:neomake_slim_enabled_makers = ['slimlint']
 autocmd! BufWritePost * Neomake
+autocmd! BufReadPost * Neomake
 
 " Visible column at 100 and 110 chars
 set colorcolumn=100,110
@@ -228,12 +245,12 @@ set colorcolumn=100,110
 match ErrorMsg '\%>110v.\+'
 
 " RSpec.vim mappings
-" map <Leader>t :call RunCurrentSpecFile()<CR>
-" map <Leader>s :call RunNearestSpec()<CR>
-" map <Leader>l :call RunLastSpec()<CR>
-" map <Leader>a :call RunAllSpecs()<CR>
-" let g:rspec_runner = "os_x_iterm2"
-" let g:rspec_command = "Dispatch bundle exec rspec {spec}"
+map <Leader>t :call RunCurrentSpecFile()<CR>
+map <Leader>s :call RunNearestSpec()<CR>
+map <Leader>l :call RunLastSpec()<CR>
+map <Leader>a :call RunAllSpecs()<CR>
+let g:rspec_runner = "os_x_iterm2"
+let g:rspec_command = "Dispatch bundle exec rspec {spec}"
 
 " The Silver Searcher
 if executable('ag')
