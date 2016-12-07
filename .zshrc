@@ -56,7 +56,6 @@ plugins=(gitfast bundler common-aliases rails history-substring-search tmux tmux
 if [ $OSTYPE=="darwin*" ]; then
   plugins+=(brew heroku osx)
 fi
-plugins+=(zsh-syntax-highlighting)
 
 # User configuration
 
@@ -119,3 +118,5 @@ export FZF_DEFAULT_COMMAND='ag -g ""'
 function cdg() {
   while [[ $PWD != '/' && ! -d ".git" ]]; do cd ..; done
 }
+
+source /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
