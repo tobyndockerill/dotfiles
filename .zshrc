@@ -7,7 +7,12 @@ export ZSH=$HOME/.oh-my-zsh
 # time that oh-my-zsh is loaded.
 # ZSH_THEME="pure"
 # ZSH_THEME="hyperzsh"
-ZSH_THEME="ys"
+
+ZSH_THEME="spaceship"
+SPACESHIP_VI_MODE_SHOW=false
+
+# ZSH_THEME="geometry"
+# ZSH_THEME="gitster"
 
 # Uncomment the following line to use case-sensitive completion.
 # CASE_SENSITIVE="true"
@@ -51,7 +56,7 @@ ZSH_CUSTOM=$HOME/dotfiles/zsh/custom
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(gitfast bundler common-aliases rails history-substring-search tmux tmuxinator vi-mode 
+plugins=(gitfast bundler common-aliases rails history-substring-search tmux tmuxinator vi-mode
   colored-man-pages)
 if [ $OSTYPE=="darwin*" ]; then
   plugins+=(brew heroku osx)
@@ -106,10 +111,6 @@ alias agf="ag --nobreak --nonumbers --noheading . | fzf"
 
 # Allow RBENV to control ruby version
 eval "$(rbenv init -)"
-
-if [ $OSTYPE=="darwin*" ]; then
-  test -e ${HOME}/.iterm2_shell_integration.zsh && source ${HOME}/.iterm2_shell_integration.zsh
-fi
 
 export FZF_DEFAULT_COMMAND='ag -g ""'
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh ]
