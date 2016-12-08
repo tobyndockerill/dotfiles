@@ -69,7 +69,6 @@ path+=($HOME'/.rbenv/bin')
 path+=('/usr/local/var/rbenv/shims')
 path+=('/usr/local/bin/git')
 path+=($HOME'/dotfiles/bin')
-path+=('/usr/local/Cellar/node/7.2.0/bin')
 path+=('/usr/local/bin')
 path+=('/usr/local/sbin')
 path+=('/usr/bin')
@@ -81,6 +80,7 @@ path+=('/usr/local/opt/go/libexec/bin')
 
 export PATH
 # export MANPATH="/usr/local/man:$MANPATH"
+export PATH=$PATH:$(yarn global bin)
 
 source $ZSH/oh-my-zsh.sh
 
