@@ -42,7 +42,8 @@ Plug 'rhlobo/vim-super-retab'
 " Plug 'Shougo/denite.nvim'
 " Plug 'kien/ctrlp.vim'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
-Plug 'junegunn/fzf.vim'
+" Plug 'junegunn/fzf.vim'
+Plug 'wezm/fzf.vim', { 'branch': 'rg' }
 
 " Syntastic
 " Plug 'scrooloose/syntastic'
