@@ -5,6 +5,7 @@ autocmd!
 set number
 set relativenumber
 set termguicolors
+set clipboard=unnamed
 set inccommand=split
 
 filetype off
@@ -59,11 +60,11 @@ Plug 'tpope/vim-endwise'
 " Autocomplete
 Plug 'Shougo/deoplete.nvim', { 'do': function('DoRemote') }
 Plug 'fishbullet/deoplete-ruby'
-Plug 'carlitux/deoplete-ternjs', { 'do': 'yarn global add tern' }
+Plug 'carlitux/deoplete-ternjs', { 'do': 'npm install -g tern' }
 
 let g:tern_request_timeout = 1
 let g:tern_show_signature_in_pum = '0'  " This do disable full signature type on autocomplete
-let g:tern#filetypes = ['jsx', 'javascript.jsx']
+let g:tern#filetypes = ['jsx']
 
 " Buffer explorer
 Plug 'jlanzarotta/bufexplorer'
@@ -108,21 +109,22 @@ Plug 'tpope/vim-dispatch'
 " BufOnly
 Plug 'schickling/vim-bufonly'
 
-" Ruby
-Plug 'vim-ruby/vim-ruby'
-
 " Rails
 Plug 'tpope/vim-rails'
 
-" JavaScript
-Plug 'pangloss/vim-javascript'
-
-" React
-Plug 'mxw/vim-jsx'
-
-" Slim
-Plug 'slim-template/vim-slim'
+" Syntax Files
+Plug 'sheerun/vim-polyglot'
 autocmd BufNewFile,BufRead *.slim set ft=slim
+
+" Javascript Syntax Highlighting
+Plug 'neovim/node-host', { 'do': 'npm install' }
+Plug 'bigfish/vim-js-context-coloring', { 'branch': 'neovim', 'do': 'npm install --update' }
+let g:js_context_colors_highlight_function_names = 1
+let g:js_context_colors_block_scope_with_let = 1
+let g:js_context_colors_jsx = 1
+
+" Allow gf on require (JS)
+Plug 'moll/vim-node'
 
 " Airline theme
 Plug 'vim-airline/vim-airline'
