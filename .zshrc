@@ -107,6 +107,7 @@ export EDITOR='nvim'
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 alias v="nvim"
 alias v.="nvim ."
+alias view="nvim -R"
 unalias rg
 
 # Allow RBENV to control ruby version

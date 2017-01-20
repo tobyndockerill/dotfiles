@@ -118,10 +118,6 @@ autocmd BufNewFile,BufRead *.slim set ft=slim
 
 " Javascript Syntax Highlighting
 Plug 'neovim/node-host', { 'do': 'npm install' }
-Plug 'bigfish/vim-js-context-coloring', { 'branch': 'neovim', 'do': 'npm install --update' }
-let g:js_context_colors_highlight_function_names = 1
-let g:js_context_colors_block_scope_with_let = 1
-let g:js_context_colors_jsx = 1
 
 " Allow gf on require (JS)
 Plug 'moll/vim-node'
@@ -239,7 +235,7 @@ map Y y$
 " Neomake Config
 let g:neomake_javascript_enabled_makers = ['eslint']
 let g:neomake_ruby_enabled_makers = ['rubocop']
-let g:neomake_scss_enabled_makers = ['scsslint']
+" let g:neomake_scss_enabled_makers = ['scsslint']
 let g:neomake_go_enabled_makers = ['go', 'golint', 'govet']
 let g:neomake_typescript_enabled_makers = ['tsc', 'tslint']
 let g:neomake_php_enabled_makers = ['php']
