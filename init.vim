@@ -126,6 +126,11 @@ Plug 'moll/vim-node'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 
+" enabled custom blocks
+Plug 'kana/vim-textobj-user'
+" select ruby block eg "vir"
+Plug 'nelstrom/vim-textobj-rubyblock'
+
 " All of your Plugins must be added before the following line
 call plug#end()
 filetype plugin indent on
