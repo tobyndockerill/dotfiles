@@ -3,6 +3,9 @@
 echo "------- Brew Upgrade"
 brew upgrade
 
+echo "------- Oh My Zsh"
+upgrade_oh_my_zsh
+
 echo "------- Brew Cask App Update"
 brew cu
 
