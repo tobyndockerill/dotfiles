@@ -51,6 +51,16 @@ Plug 'wezm/fzf.vim', { 'branch': 'rg' }
 " Neomake
 Plug 'neomake/neomake'
 
+" Neoformat
+Plug 'sbdchd/neoformat'
+" Enable tab to spaces conversion
+let g:neoformat_basic_format_retab = 1
+" Disable trimmming of trailing whitespace
+let g:neoformat_basic_format_trim = 0
+let g:neoformat_enabled_javascript = ['prettiereslint']
+let g:neoformat_enabled_ruby = ['rubocop']
+let g:neoformat_enabled_scss = ['sassconvert']
+
 " Commenting plugin (use gcc for a line or gc{motion})
 Plug 'tpope/vim-commentary'
 
