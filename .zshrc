@@ -5,14 +5,17 @@ export ZSH=$HOME/.oh-my-zsh
 # Look in ~/.oh-my-zsh/themes/
 # Optionally, if you set this to "random", it'll load a random theme each
 # time that oh-my-zsh is loaded.
-# ZSH_THEME="pure"
 # ZSH_THEME="hyperzsh"
 
-ZSH_THEME="spaceship"
-SPACESHIP_VI_MODE_SHOW=false
+# ZSH_THEME="spaceship"
+# SPACESHIP_VI_MODE_SHOW=false
 
 # ZSH_THEME="geometry"
 # ZSH_THEME="gitster"
+
+ZSH_THEME=""
+autoload -U promptinit; promptinit
+prompt pure
 
 # Uncomment the following line to use case-sensitive completion.
 # CASE_SENSITIVE="true"
