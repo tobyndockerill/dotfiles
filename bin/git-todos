@@ -1,0 +1,6 @@
+#!/bin/sh
+#
+# Find all TODO's commited by the current git user
+
+#git grep -l TODO | xargs -n1 git blame | grep "`git config --get user.name`" | grep TODO
+git grep -l TODO | xargs -n1 git blame -f -n -w | grep "$(git config user.name)" | grep TODO | sed "s/.\{9\}//" | sed "s/(.*)[[:space:]]*//"
