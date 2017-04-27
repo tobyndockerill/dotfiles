@@ -36,9 +36,6 @@ Plug 'tpope/vim-vinegar'
 " let g:vitality_fix_focus = 1
 " let g:vitality_always_assume_iterm = 1
 
-" Super Retab
-Plug 'rhlobo/vim-super-retab'
-
 " Fuzzy Search
 " Plug 'Shougo/denite.nvim'
 " Plug 'kien/ctrlp.vim'
@@ -68,20 +65,20 @@ Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-endwise'
 
 " Autocomplete
-Plug 'Shougo/deoplete.nvim', { 'do': function('DoRemote') }
+Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 Plug 'fishbullet/deoplete-ruby'
-Plug 'carlitux/deoplete-ternjs', { 'do': 'npm install -g tern' }
 
-let g:tern_request_timeout = 1
-let g:tern_show_signature_in_pum = '0'  " This do disable full signature type on autocomplete
-let g:tern#filetypes = ['jsx']
+" Plug 'carlitux/deoplete-ternjs', { 'do': 'npm install -g tern' }
+" let g:tern_request_timeout = 1
+" let g:tern_show_signature_in_pum = '0'  " This do disable full signature type on autocomplete
+" let g:tern#filetypes = ['jsx']
 
 " Buffer explorer
 Plug 'jlanzarotta/bufexplorer'
 
 " Tagbar
-Plug 'majutsushi/tagbar'
-nmap <F8> :TagbarToggle<CR>
+" Plug 'majutsushi/tagbar'
+" nmap <F8> :TagbarToggle<CR>
 
 " Search
 " Plug 'rking/ag.vim'
