@@ -4,7 +4,7 @@ echo "------- Brew Upgrade"
 brew upgrade
 
 echo "------- Oh My Zsh"
-upgrade_oh_my_zsh
+env ZSH=$ZSH sh $ZSH/tools/upgrade.sh
 
 echo "------- Brew Cask App Update"
 brew cu
