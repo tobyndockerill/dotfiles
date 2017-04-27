@@ -1,0 +1,8 @@
+#!/bin/sh
+#
+# Print the number of commits between HEAD and another commit
+#
+# git-commit-diff @~4
+# => 4
+
+git log "$1"..HEAD --pretty=oneline | wc -l
